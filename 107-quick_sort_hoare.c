@@ -34,7 +34,7 @@ size_t partition_hoare(int *array, int low, int high, size_t size)
 	/* Index of higher elements */
 	j = high + 1;
 
-	while (low < high)
+	while (low <= high)
 	{
 		/* Find leftmost element >= to pivot */
 		while (array[i] < pivot)
@@ -45,10 +45,13 @@ size_t partition_hoare(int *array, int low, int high, size_t size)
 		/* If two pointers met */
 		if (i >= j)
 			return (j);
-		swap(&array[i], &array[j]);
-		print_array(array, size);
+		if (low != high)
+		{
+			swap(&array[i], &array[j]);
+			print_array(array, size);
+		}
 	}
-	return (high);
+	return (j);
 }
 
 /**
